@@ -1,5 +1,6 @@
 package com.agritech.backend.controller;
 
+import com.agritech.backend.dto.Farmerdto;
 import com.agritech.backend.model.Farmer;
 import com.agritech.backend.service.FarmerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ public class FarmerController {
     private FarmerService serv;
 
     @PostMapping
-    public Farmer saveFarmer(@RequestBody Farmer farmer){
-        return serv.saveFarmer(farmer);
+    public Farmer saveFarmer(@RequestBody Farmerdto farmerdto){
+        return serv.saveFarmer(farmerdto);
     }
 
     @GetMapping

@@ -1,5 +1,6 @@
 package com.agritech.backend.service;
 
+import com.agritech.backend.dto.Farmerdto;
 import com.agritech.backend.model.Farmer;
 import com.agritech.backend.repository.FarmerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,11 @@ public class FarmerService {
     @Autowired
     private FarmerRepository repo;
 
-    public Farmer saveFarmer(Farmer farmer){
+    public Farmer saveFarmer(Farmerdto farmerdto){
+        Farmer farmer = new Farmer();
+        farmer.setCrop(farmerdto.getCrop());
+        farmer.setName(farmerdto.getName());
+        farmer.setVillage(farmerdto.getVillage());
         return repo.save(farmer);
     }
 

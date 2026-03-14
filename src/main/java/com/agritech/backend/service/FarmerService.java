@@ -21,4 +21,16 @@ public class FarmerService {
         return repo.findAll();
     }
 
+    public Farmer updateFarmer(Long id, Farmer newFarmer){
+        Farmer existing = repo.findById(id).orElseThrow();
+        existing.setName(newFarmer.getName());
+        existing.setVillage(newFarmer.getVillage());
+        existing.setCrop(newFarmer.getCrop());
+        return repo.save(existing);
+    }
+
+    public void deleteFarmer(Long id){
+        repo.deleteById(id);
+    }
+
 }

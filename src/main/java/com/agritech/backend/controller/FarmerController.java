@@ -23,4 +23,14 @@ public class FarmerController {
     public List<Farmer> getFarmers(){
         return serv.getAllFarmers();
     }
+
+    @PutMapping("/{id}")
+    public Farmer updateFarmer(@PathVariable Long id, @RequestBody Farmer farmer){
+        return serv.updateFarmer(id,farmer);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteFarmer(@PathVariable Long id){
+        serv.deleteFarmer(id);
+    }
 }

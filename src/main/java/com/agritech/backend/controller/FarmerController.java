@@ -4,6 +4,7 @@ import com.agritech.backend.dto.Farmerdto;
 import com.agritech.backend.model.Farmer;
 import com.agritech.backend.service.FarmerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,22 +17,27 @@ public class FarmerController {
     private FarmerService serv;
 
     @PostMapping
-    public Farmer saveFarmer(@RequestBody Farmerdto farmerdto){
-        return serv.saveFarmer(farmerdto);
+    public ResponseEntity<Farmerdto> saveFarmer(@RequestBody Farmerdto farmerdto){
+        return ResponseEntity.ok(serv.saveFarmer(farmerdto));
     }
 
     @GetMapping
-    public List<Farmer> getFarmers(){
-        return serv.getAllFarmers();
+    public ResponseEntity<List<Farmerdto>> getFarmers(){
+        return ResponseEntity.ok(serv.getAllFarmers());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Farmerdto> getFarmerById(@PathVariable Long id){
+        return ResponseEntity.ok(serv.getFarmerById(id));
     }
 
     @PutMapping("/{id}")
-    public Farmer updateFarmer(@PathVariable Long id, @RequestBody Farmer farmer){
-        return serv.updateFarmer(id,farmer);
+    public ResponseEntity<Farmerdto> updateFarmer(@PathVariable Long id, @RequestBody Farmerdto farmerdto){
+        return ResponseEntity.ok(serv.updateFarmer(id,farmerdto));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteFarmer(@PathVariable Long id){
-        serv.deleteFarmer(id);
+    public ResponseEntity<String> deleteFarmer(@PathVariable Long id){
+        return ResponseEntity.ok(serv.deleteFarmer(id));
     }
 }
